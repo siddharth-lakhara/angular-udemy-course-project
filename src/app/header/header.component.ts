@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import MenuItems from '../shared/types/menu.type';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  @Output('changeMenuItem') changeMenuItemEmitter = new EventEmitter<MenuItems>();
 
-  constructor() { }
+  handleMenuItemClick = (event) => {
+    const itemId = event.target.getAttribute('x-data-item-id');
+    this.changeMenuItemEmitter.emit(MenuItems[itemId]);
+  };
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
+  ngOnInit(): void {}
 }
