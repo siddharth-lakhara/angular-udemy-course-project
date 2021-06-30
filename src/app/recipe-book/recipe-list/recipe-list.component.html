@@ -11,6 +11,7 @@
     <app-recipe-item
       *ngFor="let recipe of recipes"
       [recipe]="recipe"
+      (handleRecipeItemClick)="handleRecipeItemClick($event)"
     ></app-recipe-item>
   </div>
 </div>

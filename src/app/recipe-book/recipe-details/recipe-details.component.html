@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-sx-12">
-    <h1>Recipe Name</h1>
+    <h1>{{recipeDetails ? recipeDetails.name : 'Recipe Name'}}</h1>
   </div>
 </div>
 <div class="row">
@@ -27,11 +27,12 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Description
+    {{ recipeDetails ? recipeDetails.description : 'Description' }}
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
+    <!-- {{ recipeDetails ? recipeDetails.ingredients : 'Ingredients' }} -->
     Ingredients
   </div>
 </div>
