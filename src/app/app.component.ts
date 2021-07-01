@@ -13,6 +13,5 @@ export class AppComponent {
 
   changeMenuItem = (newItem:MenuItems) => {
     this.menuToDisplay = newItem;
-    console.log('new menu item: ', newItem);
   };
 }
