@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Ingredient } from '../shared/models/ingredient.model';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class ShoppingService {
+  ingredients: Ingredient[] = [new Ingredient('Apples', 5), new Ingredient('Tomato', 3)];
 
-  constructor() { }
+  constructor() {}
+
+  getIngredients() {
+    return this.ingredients.slice();
+  }
+
+  addIngredients(newIngredient: Ingredient) {
+    this.ingredients.push(newIngredient);
+  }
 }
