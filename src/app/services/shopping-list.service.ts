@@ -12,4 +12,8 @@ export class ShoppingService {
   addIngredients(newIngredient: Ingredient) {
     this.ingredients.push(newIngredient);
   }
+
+  handleSendToCart(ingredient: Ingredient[]) {
+    this.ingredients.push(...ingredient);
+  }
 }
