@@ -11,12 +11,14 @@ export class RecipeService {
 
   recipes: Recipe[] = [
     new Recipe(
+      1,
       'Roti',
       'Tasty and round Roti',
       'https://image.shutterstock.com/image-photo/indian-bread-roti-600w-1019185939.jpg',
       [new Ingredient('Atta', 0), new Ingredient('Namak', 0)]
     ),
     new Recipe(
+      2,
       'Paneer Butter Masala',
       'Tasty paneer curry with creamy gravy',
       'https://image.shutterstock.com/image-photo/paneer-butter-masala-cheese-cottage-600w-620764175.jpg',
