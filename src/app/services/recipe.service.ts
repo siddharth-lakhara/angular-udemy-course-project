@@ -30,6 +30,10 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
+  getRecipeById(id: number) {
+    return this.recipes.find((r) => (r.id === id));
+  }
+
   sendToCart(ingredient: Ingredient[]) {
     this.shoppingService.handleSendToCart(ingredient);
   }
