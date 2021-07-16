@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from '../../shared/models/recipe.model';
 
@@ -18,8 +18,8 @@ export class RecipeDetailsComponent implements OnInit {
     const recipeId = +this.activeRoute.snapshot.params['id'];
     this.getRecipeById(recipeId);
 
-    this.activeRoute.params.subscribe((p) => {
-      const recipeId = +p['id'];
+    this.activeRoute.params.subscribe((param:Params) => {
+      const recipeId = +param['id'];
       this.getRecipeById(recipeId);
     });
   }
