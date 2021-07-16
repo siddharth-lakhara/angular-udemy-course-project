@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../../shared/models/recipe.model';
 
 @Component({
@@ -8,12 +7,9 @@ import { Recipe } from '../../shared/models/recipe.model';
   styleUrls: ['./recipe-item.component.css'],
 })
 export class RecipeItemComponent implements OnInit {
+  @Input() recipeId: number;
   @Input() recipe: Recipe;
-  constructor(private router: Router, private activeRoute: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  handleRecipeItemClick = () => {
-    this.router.navigate([`${this.recipe.id}`], { relativeTo: this.activeRoute });
-  };
 }
