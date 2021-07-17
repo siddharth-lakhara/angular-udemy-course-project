@@ -11,14 +11,10 @@ import { Recipe } from '../../shared/models/recipe.model';
 export class RecipeDetailsComponent implements OnInit {
   recipeDetails: Recipe;
 
-  constructor(private recipeService: RecipeService, private activeRoute: ActivatedRoute) {
-  }
+  constructor(private recipeService: RecipeService, private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const recipeId = +this.activeRoute.snapshot.params['id'];
-    this.getRecipeById(recipeId);
-
-    this.activeRoute.params.subscribe((param:Params) => {
+    this.activeRoute.params.subscribe((param: Params) => {
       const recipeId = +param['id'];
       this.getRecipeById(recipeId);
     });
@@ -35,5 +31,5 @@ export class RecipeDetailsComponent implements OnInit {
     } else {
       this.recipeDetails = {} as Recipe;
     }
-  };
+  }
 }
