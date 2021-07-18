@@ -1,7 +1,9 @@
+import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/models/ingredient.model';
 
 export class ShoppingService {
   ingredients: Ingredient[] = [new Ingredient('Apples', 5), new Ingredient('Tomato', 3)];
+  ingredientChangeEmitter = new Subject<Ingredient[]>();
 
   constructor() {}
 
@@ -11,9 +13,10 @@ export class ShoppingService {
 
   addIngredients(newIngredient: Ingredient) {
     this.ingredients.push(newIngredient);
+    this.ingredientChangeEmitter.next(this.ingredients);
   }
 
-  handleSendToCart(ingredient: Ingredient[]) {
-    this.ingredients.push(...ingredient);
+  handleSendToCart(ingredients: Ingredient[]) {
+    this.ingredients.push(...ingredients);
   }
 }

@@ -16,11 +16,13 @@ export class ShoppingListEditComponent implements OnInit {
   ngOnInit(): void {}
 
   addItemToCart = (): void => {
-    const name: string = this.nameInputRef.nativeElement.value;
-    const amount: number = this.amountInputRef.nativeElement.value;
+    const name: string = (this.nameInputRef.nativeElement.value).trim();
+    const amount: number = +this.amountInputRef.nativeElement.value;
 
-    const newIngredient: Ingredient = new Ingredient(name, amount);
-    this.shoppingService.addIngredients(newIngredient);
+    if (name.length && amount>0) {
+      const newIngredient: Ingredient = new Ingredient(name, amount);
+      this.shoppingService.addIngredients(newIngredient);
+    }
   };
 
   clearForm = (nameInput: HTMLInputElement, amountInput: HTMLInputElement): void => {
