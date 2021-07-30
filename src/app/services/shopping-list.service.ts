@@ -19,7 +19,12 @@ export class ShoppingService {
 
   addIngredients(newIngredient: Ingredient) {
     this.ingredients.push(newIngredient);
-    this.ingredientChangeEmitter.next(this.ingredients);
+    this.ingredientChangeEmitter.next(this.ingredients.slice());
+  }
+
+  updateIngredient(idx: number, newIngredient: Ingredient) {
+    this.ingredients[idx] = newIngredient;
+    this.ingredientChangeEmitter.next(this.ingredients.slice());
   }
 
   handleSendToCart(ingredients: Ingredient[]) {
