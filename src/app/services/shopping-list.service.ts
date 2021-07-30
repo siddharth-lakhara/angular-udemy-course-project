@@ -27,6 +27,11 @@ export class ShoppingService {
     this.ingredientChangeEmitter.next(this.ingredients.slice());
   }
 
+  deleteIngredient(idx: number) {
+    this.ingredients.splice(idx, 1);
+    this.ingredientChangeEmitter.next(this.ingredients.slice());
+  };
+
   handleSendToCart(ingredients: Ingredient[]) {
     this.ingredients.push(...ingredients);
   }

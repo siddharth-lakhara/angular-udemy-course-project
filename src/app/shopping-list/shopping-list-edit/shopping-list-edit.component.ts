@@ -12,26 +12,23 @@ import { Ingredient } from 'src/app/shared/models/ingredient.model';
 export class ShoppingListEditComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) ingForm: NgForm;
 
-  editIngredientSub:Subscription;
+  editIngredientSub: Subscription;
   editMode = false;
-  editItemIdx:number;
+  editItemIdx: number;
   editedItem: Ingredient;
 
   constructor(private shoppingService: ShoppingService) {}
 
   ngOnInit(): void {
-    this.editIngredientSub = this.shoppingService.editIngredient
-      .subscribe(
-        (idx:number) => {
-          this.editMode = true;
-          this.editItemIdx = idx;
-          this.editedItem = this.shoppingService.getIngredientAtIdx(idx);
-          this.ingForm.setValue({
-            name: this.editedItem.name,
-            amount: this.editedItem.amount,
-          });
-        }
-      );
+    this.editIngredientSub = this.shoppingService.editIngredient.subscribe((idx: number) => {
+      this.editMode = true;
+      this.editItemIdx = idx;
+      this.editedItem = this.shoppingService.getIngredientAtIdx(idx);
+      this.ingForm.setValue({
+        name: this.editedItem.name,
+        amount: this.editedItem.amount,
+      });
+    });
   }
 
   addItemToCart = (form: NgForm): void => {
@@ -50,6 +47,11 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   clearForm = (): void => {
     this.ingForm.reset();
     this.editMode = false;
+  };
+
+  deleteIngredient() {
+    this.shoppingService.deleteIngredient(this.editItemIdx);
+    this.clearForm();
   };
 
   ngOnDestroy() {
