@@ -5,10 +5,16 @@ export class ShoppingService {
   ingredients: Ingredient[] = [new Ingredient('Apples', 5), new Ingredient('Tomato', 3)];
   ingredientChangeEmitter = new Subject<Ingredient[]>();
 
+  editIngredient = new Subject<number>();
+
   constructor() {}
 
   getIngredients() {
     return this.ingredients.slice();
+  }
+
+  getIngredientAtIdx(idx: number) {
+    return this.ingredients[idx];
   }
 
   addIngredients(newIngredient: Ingredient) {
