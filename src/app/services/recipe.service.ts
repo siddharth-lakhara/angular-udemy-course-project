@@ -10,7 +10,7 @@ export class RecipeService {
       'Roti',
       'Tasty and round Roti',
       'https://image.shutterstock.com/image-photo/indian-bread-roti-600w-1019185939.jpg',
-      [new Ingredient('Atta', 0), new Ingredient('Namak', 0)]
+      [new Ingredient('Atta', 1), new Ingredient('Namak', 1)]
     ),
     new Recipe(
       'Paneer Butter Masala',
