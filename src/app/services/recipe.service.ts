@@ -1,9 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/models/ingredient.model';
 import { Recipe } from '../shared/models/recipe.model';
 
 export class RecipeService {
-  // handleRecipeItemClick = new EventEmitter<Recipe>();
+  recipeChangeObserver = new Subject<Recipe[]>();
 
   recipes: Recipe[] = [
     new Recipe(
@@ -20,22 +20,24 @@ export class RecipeService {
     ),
   ];
 
-  getRecipes() {
+  getRecipes():Recipe[] {
     return this.recipes.slice();
   }
 
-  getRecipeById(id: number) {
+  getRecipeById(id: number):Recipe {
     if (id>0 && id<=this.recipes.length) {
       return this.recipes[id-1];
     }
     return {} as Recipe;
   }
 
-  addRecipe(recipe: Recipe) {
+  addRecipe(recipe: Recipe):void {
     this.recipes.push(recipe);
+    this.recipeChangeObserver.next(this.getRecipes());
   }
 
-  updateRecipe(idx: number, recipe: Recipe) {
-    this.recipes[idx] = recipe;
+  updateRecipe(idx: number, recipe: Recipe):void {
+    this.recipes[idx-1] = recipe;
+    this.recipeChangeObserver.next(this.getRecipes());
   }
 }
