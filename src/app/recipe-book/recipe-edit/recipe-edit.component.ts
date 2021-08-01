@@ -31,7 +31,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeIngredients = new FormArray([]);
 
     if (this.isEditing) {
-      const recipe = this.recipeService.getRecipeById(this.recipeId);
+      const recipe = this.recipeService.getRecipeById(this.recipeId-1);
       recipeName = recipe.name;
       recipeImgPath = recipe.imagePath;
       recipeDescription = recipe.description;
@@ -81,7 +81,7 @@ export class RecipeEditComponent implements OnInit {
     // const newRecipe = new Recipe(recipeName, recipeDescription, recipeImgPath, recipeIngredients);
 
     if (this.isEditing) {
-      this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value);
+      this.recipeService.updateRecipe(this.recipeId-1, this.recipeForm.value);
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
     }

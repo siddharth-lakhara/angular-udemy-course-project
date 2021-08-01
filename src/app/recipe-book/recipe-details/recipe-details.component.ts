@@ -11,17 +11,19 @@ import { Recipe } from '../../shared/models/recipe.model';
 })
 export class RecipeDetailsComponent implements OnInit {
   recipeDetails: Recipe;
+  recipeId:number;
 
   constructor(
     private recipeService: RecipeService,
     private activeRoute: ActivatedRoute,
-    private shoppingService: ShoppingService,
+    private shoppingService: ShoppingService
   ) {}
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe((param: Params) => {
-      const recipeId = +param['id'];
-      this.getRecipeById(recipeId);
+      this.recipeId = +param['id'] - 1;
+      console.log(this.recipeId);
+      this.getRecipeById();
     });
   }
 
@@ -30,11 +32,15 @@ export class RecipeDetailsComponent implements OnInit {
     this.shoppingService.handleSendToCart(ingredient);
   }
 
-  getRecipeById(recipeId: number) {
-    if (recipeId) {
-      this.recipeDetails = this.recipeService.getRecipeById(recipeId);
+  getRecipeById() {
+    if (this.recipeId !== undefined) {
+      this.recipeDetails = this.recipeService.getRecipeById(this.recipeId);
     } else {
       this.recipeDetails = {} as Recipe;
     }
   }
+
+  // onDeleteRecipe() {
+  //   this.recipeService.deleteRecipe(this.recipeId);
+  // }
 }

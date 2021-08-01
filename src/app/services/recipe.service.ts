@@ -20,24 +20,29 @@ export class RecipeService {
     ),
   ];
 
-  getRecipes():Recipe[] {
+  getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
 
-  getRecipeById(id: number):Recipe {
-    if (id>0 && id<=this.recipes.length) {
-      return this.recipes[id-1];
+  getRecipeById(id: number): Recipe {
+    if (id >= 0 && id < this.recipes.length) {
+      return this.recipes[id];
     }
     return {} as Recipe;
   }
 
-  addRecipe(recipe: Recipe):void {
+  addRecipe(recipe: Recipe): void {
     this.recipes.push(recipe);
     this.recipeChangeObserver.next(this.getRecipes());
   }
 
-  updateRecipe(idx: number, recipe: Recipe):void {
-    this.recipes[idx-1] = recipe;
+  updateRecipe(idx: number, recipe: Recipe): void {
+    this.recipes[idx - 1] = recipe;
+    this.recipeChangeObserver.next(this.getRecipes());
+  }
+
+  deleteRecipe(idx: number): void {
+    this.recipes.splice(idx, 1);
     this.recipeChangeObserver.next(this.getRecipes());
   }
 }
