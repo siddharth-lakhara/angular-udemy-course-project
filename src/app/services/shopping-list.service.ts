@@ -9,30 +9,30 @@ export class ShoppingService {
 
   constructor() {}
 
-  getIngredients() {
+  getIngredients(): Ingredient[] {
     return this.ingredients.slice();
   }
 
-  getIngredientAtIdx(idx: number) {
+  getIngredientAtIdx(idx: number): Ingredient {
     return this.ingredients[idx];
   }
 
-  addIngredients(newIngredient: Ingredient) {
+  addIngredients(newIngredient: Ingredient): void {
     this.ingredients.push(newIngredient);
     this.ingredientChangeEmitter.next(this.ingredients.slice());
   }
 
-  updateIngredient(idx: number, newIngredient: Ingredient) {
+  updateIngredient(idx: number, newIngredient: Ingredient): void {
     this.ingredients[idx] = newIngredient;
     this.ingredientChangeEmitter.next(this.ingredients.slice());
   }
 
-  deleteIngredient(idx: number) {
+  deleteIngredient(idx: number): void {
     this.ingredients.splice(idx, 1);
     this.ingredientChangeEmitter.next(this.ingredients.slice());
   };
 
-  handleSendToCart(ingredients: Ingredient[]) {
+  handleSendToCart(ingredients: Ingredient[]): void {
     this.ingredients.push(...ingredients);
   }
 }
