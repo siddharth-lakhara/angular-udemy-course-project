@@ -37,7 +37,7 @@ export class RecipeService {
   }
 
   updateRecipe(idx: number, recipe: Recipe): void {
-    this.recipes[idx - 1] = recipe;
+    this.recipes[idx] = recipe;
     this.recipeChangeObserver.next(this.getRecipes());
   }
 
