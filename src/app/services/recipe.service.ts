@@ -3,7 +3,7 @@ import { Ingredient } from '../shared/models/ingredient.model';
 import { Recipe } from '../shared/models/recipe.model';
 
 export class RecipeService {
-  handleRecipeItemClick = new EventEmitter<Recipe>();
+  // handleRecipeItemClick = new EventEmitter<Recipe>();
 
   recipes: Recipe[] = [
     new Recipe(
@@ -29,5 +29,13 @@ export class RecipeService {
       return this.recipes[id-1];
     }
     return {} as Recipe;
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+  }
+
+  updateRecipe(idx: number, recipe: Recipe) {
+    this.recipes[idx] = recipe;
   }
 }
